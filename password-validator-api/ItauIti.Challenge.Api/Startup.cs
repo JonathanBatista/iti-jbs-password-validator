@@ -28,6 +28,7 @@ namespace ItauIti.Challenge.Api
                 config.AddShouldHaveSpecialCharacterValidation();
                 config.AddShouldHaveMinimumLengthValidation(9);
                 config.AddShouldNotRepeatCharactersValidation();
+                config.AddCustomValidator((string input) => !string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input));
             });
         }
 

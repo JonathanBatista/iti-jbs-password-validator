@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ItauIti.Challenge.PasswordValidate.DependencyInjection\ItauIti.Challenge.PasswordValidate.DependencyInjection.csproj" />
+    <PackageReference Include="ItauIti.Challenge.PasswordValidate.DependencyInjection" Version="1.0.0" />
   </ItemGroup>
 
 
