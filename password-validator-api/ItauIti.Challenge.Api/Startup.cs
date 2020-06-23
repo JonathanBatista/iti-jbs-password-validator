@@ -20,7 +20,6 @@ namespace ItauIti.Challenge.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
             services.AddPasswordValidation(config =>
             {
                 config.AddShouldHaveLowercaseValidation();
@@ -29,7 +28,7 @@ namespace ItauIti.Challenge.Api
                 config.AddShouldHaveSpecialCharacterValidation();
                 config.AddShouldHaveMinimumLengthValidation(9);
                 config.AddShouldNotRepeatCharactersValidation();
-                //config.AddCustomValidator((string input) => !string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input));
+                config.AddCustomValidator((string input) => !string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input));
             });
 
             services.AddSwaggerGen(c =>
