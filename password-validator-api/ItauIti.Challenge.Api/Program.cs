@@ -15,6 +15,8 @@ namespace ItauIti.Challenge.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://*:5050");
+                    webBuilder.UseKestrel();
                 });
     }
 }

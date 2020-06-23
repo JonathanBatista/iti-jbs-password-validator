@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace ItauIti.Challenge.Api
 {
@@ -19,7 +20,7 @@ namespace ItauIti.Challenge.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            
             services.AddPasswordValidation(config =>
             {
                 config.AddShouldHaveLowercaseValidation();
@@ -28,8 +29,26 @@ namespace ItauIti.Challenge.Api
                 config.AddShouldHaveSpecialCharacterValidation();
                 config.AddShouldHaveMinimumLengthValidation(9);
                 config.AddShouldNotRepeatCharactersValidation();
-                config.AddCustomValidator((string input) => !string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input));
+                //config.AddCustomValidator((string input) => !string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input));
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Itau Iti - Sistema Validador de senhas",
+                        Version = "v1",
+                        Description = " ItauIti Api - Serviços para validação de senha",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Jonathan Batista",
+                            Email = "jonathan.silbatista@gmail.com"
+                        }
+                    });
+            });
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +58,11 @@ namespace ItauIti.Challenge.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Itau Iti - Sistema Validador de senhas - V1");
+            });
 
             app.UseHttpsRedirection();
 

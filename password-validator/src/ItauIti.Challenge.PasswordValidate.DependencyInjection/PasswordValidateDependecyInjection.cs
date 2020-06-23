@@ -8,7 +8,9 @@ namespace ItauIti.Challenge.PasswordValidate.DependencyInjection
     {
         public static void AddPasswordValidation(this IServiceCollection services, Action<ConfigurationPasswordValidator> config)
         {
-            services.AddSingleton(((ConfigurationPasswordValidator) config.Target).Initiaze());
+            var configuration = new ConfigurationPasswordValidator();
+            config(configuration);
+            services.AddSingleton(configuration.Initiaze());
         }
     }
 }
