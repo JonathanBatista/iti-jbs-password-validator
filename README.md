@@ -4,10 +4,12 @@ Para rodar as aplicações será necessário a instalação do .netcore 3.1 disp
 https://dotnet.microsoft.com/download
 
 Siga os passos abaixo para executar o projeto ItauIti.Challenge.Api utilizando dotnet CLI.
-1. Abra um command prompt e entre na pasta raiz do projeto;
+1. Abra um command prompt e entre na pasta raiz do projeto api **password-validator-api**;
 2. Execute o comando ```dotnet restore ```
 3. Ao finalizar o comando anterior, execute ```dotnet build ItauIti.Challenge.sln ```
-4. Para executar a aplicação ```dotnet run ```
+4. Para cria a dll de publicação ```dotnet publish ItauIti.Challenge.sln -o publish```
+5. Entre na pasta publish ```cd publish ```
+6. Execute o comando para executar a aplicação ```dotnet ItauIti.Challenge.Api.dll```
 
 Caso deseje visualizar os endpoints disponíveis e como utiliza-los, basta abrir em seu navegador a ```"http://api_url_base/swagger"```, no exemplo abaixo:
 http://localhost:5050/swagger
